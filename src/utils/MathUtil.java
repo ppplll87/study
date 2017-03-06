@@ -1,5 +1,7 @@
 package utils;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.ArrayList;
 
 public class MathUtil {
@@ -72,5 +74,58 @@ public class MathUtil {
 			}
 		}
 		return primeNumberList;
+	}
+	
+	/**
+	 * 조합을 구한다 (= nCr, nPr/r!)
+	 * @param n
+	 * @param r
+	 * @return
+	 */
+	public static BigInteger getCombination(final int n, final int r) {
+		
+		if(n <= 0 || r <= 0 || (n - r) < 0) {
+			return BigInteger.valueOf(-1);
+		} else {
+			return getPermutation(n, r).divide(getFactorial(r));
+		}
+	}
+	
+	/**
+	 * 순열을 구한다 (= nPr, n!/(n-r)!)
+	 * @param n 전체 원소 수
+	 * @param i 선택 수
+	 * @return
+	 */
+	public static BigInteger getPermutation(final int n, final int r) {
+		
+		if(n <= 0 || r <= 0 || (n - r) < 0) {
+			return BigInteger.valueOf(-1);
+		} else {
+			return getFactorial(n).divide(getFactorial(n-r));
+		}
+	}
+	
+	/**
+	 * 계승을 구한다 (= Factorial, 5!)
+	 * @param number
+	 * @return
+	 */
+	public static BigInteger getFactorial(final int number) {
+		
+		if(number <= 0 ) {
+			return BigInteger.valueOf(-1);
+		} else {
+			
+			BigInteger returnValue = BigInteger.valueOf(1);
+			
+			for(int i = number; i >= 1; i--) {
+				returnValue = returnValue.multiply(BigInteger.valueOf(Long.valueOf(i)));
+			}
+			
+			return returnValue;
+		}
+
+		
 	}
 }
