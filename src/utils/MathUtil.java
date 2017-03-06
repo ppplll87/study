@@ -86,7 +86,7 @@ public class MathUtil {
 		
 		if(n <= 0 || (n - r) < 0) {
 			return BigInteger.valueOf(-1);
-		} else if (r <= 0) {
+		} else if(r <= 0) {
 			return BigInteger.valueOf(1);
 		} else {
 			return getPermutation(n, r).divide(getFactorial(r));
