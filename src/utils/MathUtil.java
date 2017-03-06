@@ -84,8 +84,10 @@ public class MathUtil {
 	 */
 	public static BigInteger getCombination(final int n, final int r) {
 		
-		if(n <= 0 || r <= 0 || (n - r) < 0) {
+		if(n <= 0 || (n - r) < 0) {
 			return BigInteger.valueOf(-1);
+		} else if (r <= 0) {
+			return BigInteger.valueOf(1);
 		} else {
 			return getPermutation(n, r).divide(getFactorial(r));
 		}
@@ -99,8 +101,10 @@ public class MathUtil {
 	 */
 	public static BigInteger getPermutation(final int n, final int r) {
 		
-		if(n <= 0 || r <= 0 || (n - r) < 0) {
+		if(n <= 0 || (n - r) < 0) {
 			return BigInteger.valueOf(-1);
+		} else if(r <= 0) {
+			return BigInteger.valueOf(1);
 		} else {
 			return getFactorial(n).divide(getFactorial(n-r));
 		}
@@ -125,7 +129,5 @@ public class MathUtil {
 			
 			return returnValue;
 		}
-
-		
 	}
 }
